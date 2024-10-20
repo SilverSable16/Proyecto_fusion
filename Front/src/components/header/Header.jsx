@@ -36,7 +36,7 @@ const Header = () => {
             <Container>
                 <div className="navigation">
                     <div className="logo" style={{ display: 'flex', alignItems: 'center' }}>
-                        <Link to="/home"> {/* Envolver la imagen en un componente Link */}
+                        <Link to="/"> {/* Envolver la imagen en un componente Link */}
                             <img
                                 src={logo}
                                 alt="Federico Fazbear Logo"
@@ -56,10 +56,15 @@ const Header = () => {
                                     </li>
                                 ))}
                             </ul>
-                            <div className="menu_right">
+                            <div className="menu_right d-flex align-items-center">
                                 <div className="custom__search">
                                     <input type="text" placeholder="Search..." />
                                     <span><i className="ri-search-line"></i></span>
+                                </div>
+                                <div className="login__icon" style={{ marginLeft: '15px' }}>
+                                    <Link to="/login">
+                                        <i className="ri-user-line" style={{ fontSize: '1.5rem' }}></i>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

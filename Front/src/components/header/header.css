@@ -77,6 +77,29 @@ transition: 0.3s;
     color: #141124;
     font-size: 0.8rem;
     font-weight: 700;
+
+}
+
+.login__icon {
+    position: relative;
+    z-index: 999;
+    width: 40px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;;
+}
+
+.login__icon i {
+    font-size: 1.5rem; /* Ajusta el tamaño del ícono */
+    color: #fff; /* Cambia el color según prefieras */
+    transition: color 0.3s ease;
+}
+
+/* Efecto al pasar el mouse sobre el ícono */
+.login__icon:hover i {
+    color: #F76E11; /* Color al hacer hover (puedes personalizarlo) */
 }
 
 @media only screen and (max-width:992px){
@@ -132,4 +155,22 @@ transition: 0.3s;
     .active__menu{
         display: block;
     }
+
+    .login__icon {
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.login__icon i {
+    font-size: 1.5rem; /* Ajusta el tamaño del ícono */
+    color: #333; /* Cambia el color según prefieras */
+    transition: color 0.3s ease;
+}
+
+/* Efecto al pasar el mouse sobre el ícono */
+.login__icon:hover i {
+    color: #007bff; /* Color al hacer hover (puedes personalizarlo) */
+}
 }
