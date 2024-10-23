@@ -19,7 +19,7 @@ const navLinks = [
     },
     {
         label: 'AYUDA',
-        url: '#'
+        url: '/Ayuda'
     },
 ];
 

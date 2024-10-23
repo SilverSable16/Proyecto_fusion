@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import MenuPack from './pages/MenuPack';
 import Reservas from './pages/Reservas';
 import Sucursales from './pages/Sucursales';
+import Ayuda from './pages/Ayuda';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/menu-pack" element={<MenuPack />} />
                 <Route path="/reservas" element={<Reservas />} />
                 <Route path="/sucursales" element={<Sucursales />} />
+                <Route path="/Ayuda" element={<Ayuda />} />
 
             </Routes>
         </Router>
