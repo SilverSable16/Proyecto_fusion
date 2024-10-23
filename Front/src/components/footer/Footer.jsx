@@ -24,19 +24,19 @@ const footerQuickLinks = [
 
 const footerLinks = [
     {
-        display: 'About Us',
-        url: '#'
+        display: 'MENÚ',
+        url: '/menu-pack'
     },
     {
-        display: 'Menu',
-        url: '#'
+        display: 'RESERVAS',
+        url: '/reservas'
     },
     {
-        display: 'Recipes',
-        url: '#'
+        display: 'SUCURSALES',
+        url: '/sucursales'
     },
     {
-        display: 'Contact',
+        display: 'AYUDA',
         url: '#'
     }
 ];

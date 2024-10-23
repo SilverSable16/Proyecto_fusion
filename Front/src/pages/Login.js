@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-//import { Elements } from '@stripe/react-stripe-js';
-//import { loadStripe } from '@stripe/stripe-js';
-//import CheckoutForm from '../CheckoutForm'; // Ajusta la ruta si es necesario
-
-// Cargar la clave pública de Stripe
-//const stripePromise = loadStripe('pk_test_51Q9HPsB93apspbx9JgkhovEQGqqD1I6OgQQvticZ2PXSl4SnDv3wag9kAIvTo2r9xIhBI2aNNT5902GHhyeSkQmu00jmBMWQSE');
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import './login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState(null);
   const [error, setError] = useState('');
+
+  const navigate = useNavigate(); // Usa el hook useNavigate
 
   // Manejar el inicio de sesión
   const handleLogin = async (e) => {
@@ -56,53 +54,60 @@ const Login = () => {
     alert(data.message);
   };
 
+  const handleBackToHomeClick = () => {
+    navigate('/'); // Redirige al inicio
+  };
+
   return (
-    <div className="container mt-5">
-      <h1 className="text-center">Federico Fazbear</h1>
+    <div className="login__container">
+      <div className="back-to-home-button">
+        <button onClick={handleBackToHomeClick}><i class="ri-arrow-left-fill"></i></button>
+      </div>
+      <div className="form__wrapper">
+        <h2 className="text-center">Federico Fazbear</h2>
 
-      {!token ? (
-        <form onSubmit={handleLogin}>
-          <div className="mb-3">
-            <label className="form-label">Correo</label>
-            <input
-              type="text"
-              className="form-control"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+        {!token ? (
+          <form onSubmit={handleLogin}>
+            <div className="form__group">
+              <label>Correo</label>
+              <input
+                type="text"
+                placeholder="Ingresa tu correo"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="form__group">
+              <label>Contraseña</label>
+              <input
+                type="password"
+                placeholder="Ingresa tu contraseña"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            {error && <div className="alert alert-danger">{error}</div>}
+
+            <button type="submit" className="btn__primary">
+              Iniciar sesión
+            </button>
+          </form>
+        ) : (
+          <div>
+            <h2 className="text-success">Sesión iniciada</h2>
+            <button className="btn__primary" onClick={handleLogout}>
+              Cerrar sesión
+            </button>
+            <button className="btn__primary ml-3" onClick={accessProtectedRoute}>
+              Acceder a ruta protegida
+            </button>
           </div>
-
-          <div className="mb-3">
-            <label className="form-label">Contraseña</label>
-            <input
-              type="password"
-              className="form-control"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          {error && <div className="alert alert-danger">{error}</div>}
-
-          <button type="submit" className="btn btn-primary">
-            Iniciar sesión
-          </button>
-        </form>
-      ) : (
-        <div>
-          <h2 className="text-success">Sesión iniciada</h2>
-          <button className="btn btn-danger" onClick={handleLogout}>
-            Cerrar sesión
-          </button>
-          <button className="btn btn-info ml-3" onClick={accessProtectedRoute}>
-            Acceder a ruta protegida
-          </button>
-
-          {/* Componente de pago de Stripe */}
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

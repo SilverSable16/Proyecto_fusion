@@ -1,0 +1,91 @@
+.mapa-mesas {
+    text-align: center;
+    padding: 20px;
+}
+.reservas-container {
+    margin-top: 75px; /* Ajusta este valor según sea necesario */
+}
+
+.formulario-busqueda {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.mapa {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.mesa {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.mesa-ocupada {
+    background-color: red;
+}
+
+.mesa-libre {
+    background-color: lightgray;
+}
+
+.filter-btn {
+    border: 1px solid #f76e11;
+    padding: 7px 25px;
+    background: transparent;
+    margin-left: 15px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="date"],
+input[type="time"] {
+    color: #fff; /* Color del texto a blanco */
+    background: transparent; /* Fondo transparente */
+    border: 1px solid #f76e11; /* Borde visible */
+    padding: 7px 25px; /* Igual que en los botones */
+    border-radius: 5px; /* Bordes redondeados */
+    appearance: none; /* Elimina el estilo predeterminado */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    background-color: #f76e11; /* Fondo naranja para el icono */
+    border-radius: 5px; /* Bordes redondeados */
+    color: white; /* Cambia el color del icono */
+}
+
+/* Para Firefox, puedes usar esto para inputs de tipo date y time */
+input[type="date"] {
+    background: transparent; /* Para Firefox */
+}
+
+input[type="time"] {
+    background: transparent; /* Para Firefox */
+}
+
+.select-sucursal {
+    border: 1px solid #f76e11;
+    padding: 7px 25px;
+    background: transparent;
+    color: #fff; /* Cambia el color del texto a negro */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.select-sucursal option {
+    color: #000; /* Cambia el color de las opciones a negro */
+    background: #fff; /* Opcional: asegúrate de que el fondo sea blanco para una mejor visibilidad */
+}

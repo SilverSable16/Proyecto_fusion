@@ -6,23 +6,19 @@ import logo from '../../assets/images/logo2.png';
 
 const navLinks = [
     {
-        label: 'Home',
-        url: '#'
+        label: 'MENÚ',
+        url: '/menu-pack'
     },
     {
-        label: 'About',
-        url: '#'
+        label: 'RESERVAS',
+        url: '/reservas'
     },
     {
-        label: 'Reservas',
-        url: '#'
+        label: 'SUCURSALES',
+        url: '/sucursales'
     },
     {
-        label: 'Recipe',
-        url: '#'
-    },
-    {
-        label: 'Contact',
+        label: 'AYUDA',
         url: '#'
     },
 ];
@@ -73,7 +69,7 @@ const Header = () => {
                     <div>
                         <span className="cart__icon">
                             <i className="ri-shopping-cart-2-line"></i>
-                            <span className="badge">2</span>
+                            <span className="badge"></span>
                         </span>
                     </div>
 

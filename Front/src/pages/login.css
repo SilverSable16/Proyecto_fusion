@@ -75,3 +75,24 @@
     cursor: pointer;
     font-weight: bold;
 }
+
+.back-to-home-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000; /* Asegúrate de que el botón esté encima de otros elementos */
+}
+
+.back-to-home-button button {
+    background-color: #f76e11;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.back-to-home-button button:hover {
+    background-color: #e65c00; /* Cambia el color en hover */
+}

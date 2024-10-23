@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
-import './login.css'; // Asegúrate de crear un archivo CSS para estilos personalizados
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import './login.css';
 
 const Login = () => {
-    const [isLogin, setIsLogin] = useState(true); // Estado para alternar entre login y registro
-    const [username, setUsername] = useState(''); // Estado para el nombre o email
-    const [password, setPassword] = useState(''); // Estado para la contraseña
-    const [name, setName] = useState(''); // Estado para el nombre de registro
+    const [isLogin, setIsLogin] = useState(true);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
     const [error, setError] = useState('');
     const [token, setToken] = useState(null);
 
-    // Manejar el envío del formulario
+    const navigate = useNavigate(); // Usa el hook useNavigate
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         
-        const endpoint = isLogin ? 'login' : 'register'; // Usar login o registro según el estado
+        const endpoint = isLogin ? 'login' : 'register';
         const body = isLogin
             ? { username, password }
-            : { name, username, password }; // Enviar el nombre solo si es registro
+            : { name, username, password };
 
         const response = await fetch(`https://federico-fazbear.onrender.com/api/${endpoint}`, {
             method: 'POST',
@@ -30,8 +32,8 @@ const Login = () => {
         const data = await response.json();
 
         if (response.ok) {
-            setToken(data.token); // Guardar el token si el login o registro es exitoso
-            localStorage.setItem('token', data.token); // Guardar el token en localStorage
+            setToken(data.token);
+            localStorage.setItem('token', data.token);
         } else {
             setError(data.error);
         }
@@ -39,11 +41,18 @@ const Login = () => {
 
     const handleLogout = () => {
         setToken(null);
-        localStorage.removeItem('token'); // Eliminar token al cerrar sesión
+        localStorage.removeItem('token');
+    };
+
+    const handleBackToHomeClick = () => {
+        navigate('/'); // Redirige al inicio
     };
 
     return (
         <div className="login__container">
+            <div className="back-to-home-button">
+                <button onClick={handleBackToHomeClick}>Inicio</button>
+            </div>
             <div className="form__wrapper">
                 <h2>{isLogin ? 'Iniciar Sesión' : 'Crear Cuenta'}</h2>
                 <form onSubmit={handleSubmit}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'reactstrap';
 import Slider from 'react-slick';
-
+import { Link } from 'react-router-dom';
 import {sliderData} from "../../assets/fake-data/slider";
 import "./slider.css"
 
@@ -25,7 +25,11 @@ const HeroSlider = () => {
                             <div className="slider__content w-50 ps-2">
                                 <h2 className="mb-3">{item.title}</h2>
                                 <p>{item.desc}</p>
-                                <button className="btn">Explore Food</button>
+                                <button className="btn">
+    <Link to="/menu-pack" style={{ textDecoration: 'none', color: 'inherit' }}>
+        Explore Food
+    </Link>
+</button>
                             </div>
 
                             <div className="slider__img w-50">
