@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import './header.css';
 import { Container } from 'reactstrap';
 import { Link } from 'react-router-dom'; // Importa Link
+import { useCart } from '../cart/CartContext'; // Importa el contexto del carrito
 import logo from '../../assets/images/logo2.png';
 
 const navLinks = [
@@ -25,6 +26,7 @@ const navLinks = [
 
 const Header = () => {
     const menuRef = useRef();
+    const { cartItems } = useCart(); // Obtiene los artículos del carrito
     const menuToggle = () => menuRef.current.classList.toggle('active__menu');
 
     return (
@@ -57,6 +59,12 @@ const Header = () => {
                                     <input type="text" placeholder="Search..." />
                                     <span><i className="ri-search-line"></i></span>
                                 </div>
+                                <div className="cart__icon" style={{ marginLeft: '15px' }}>
+                                    <Link to="/cart">
+                                        <i className="ri-shopping-cart-line" style={{ fontSize: '1.5rem' }}></i>
+                                        <span className="cart-count">{cartItems.length}</span> {/* Muestra la cantidad de artículos */}
+                                    </Link>
+                                </div>
                                 <div className="login__icon" style={{ marginLeft: '15px' }}>
                                     <Link to="/login">
                                         <i className="ri-user-line" style={{ fontSize: '1.5rem' }}></i>
@@ -64,13 +72,6 @@ const Header = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div>
-                        <span className="cart__icon">
-                            <i className="ri-shopping-cart-2-line"></i>
-                            <span className="badge"></span>
-                        </span>
                     </div>
 
                     <div className="mobile_menu">

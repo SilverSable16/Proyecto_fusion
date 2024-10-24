@@ -3,39 +3,41 @@ import { Container, Row, Col } from 'reactstrap';
 import Header from '../components/header/Header'; // Importa el Header
 import Footer from '../components/footer/Footer'; // Importa el Footer
 import ProductCard from '../components/product-card/ProductCard';
-import { fastFoodProducts, riceMenuProducts, pizzaProducts, dessertProducts, coffeeProducts } from '../assets/fake-data/products';
+import { useCart } from '../components/cart/CartContext'; // Asegúrate de que esta ruta sea correcta
 import './menu-pack.css';
 
 const MenuPack = () => {
-    const [filter, setFilter] = useState('RICE-MENU');
-    const [products, setProducts] = useState(riceMenuProducts);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [filter, setFilter] = useState(1); // Filtrando por idTipoMenu
+    const { cartItems } = useCart(); // Aquí obtenemos los items del carrito
 
     useEffect(() => {
-        switch (filter) {
-            case 'RICE-MENU':
-                setProducts(riceMenuProducts);
-                break;
-            case 'FAST-FOOD':
-                setProducts(fastFoodProducts);
-                break;
-            case 'PIZZA':
-                setProducts(pizzaProducts);
-                break;
-            case 'DESSERT':
-                setProducts(dessertProducts);
-                break;
-            case 'COFFEE':
-                setProducts(coffeeProducts);
-                break;
-            default:
-                setProducts(riceMenuProducts);
-                break;
-        }
-    }, [filter]);
+        const fetchMenuItems = async () => {
+            try {
+                const response = await fetch('https://federico-fazbear.onrender.com/api/menugeneral/all');
+                if (!response.ok) {
+                    throw new Error('Error al cargar el menú');
+                }
+                const data = await response.json();
+                setProducts(data.menuGenerals);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMenuItems();
+    }, []);
+
+    if (loading) return <div>Cargando...</div>;
+    if (error) return <div>{error}</div>;
 
     return (
         <>
-            <Header /> {/* Header al inicio */}
+            <Header />
             <section>
                 <Container>
                     <Row>
@@ -43,15 +45,15 @@ const MenuPack = () => {
                             <h3 className="menu__title">Nuestras Cartas</h3>
                         </Col>
                         <Col lg="12" className="text-center mb-5">
-                            <button className={`filter-btn ${filter === 'FAST-FOOD' ? 'active__btn' : ''}`} onClick={() => setFilter('FAST-FOOD')}>Fast Food</button>
-                            <button className={`filter-btn ${filter === 'RICE-MENU' ? 'active__btn' : ''}`} onClick={() => setFilter('RICE-MENU')}>Rice Food</button>
-                            <button className={`filter-btn ${filter === 'PIZZA' ? 'active__btn' : ''}`} onClick={() => setFilter('PIZZA')}>Pizza</button>
-                            <button className={`filter-btn ${filter === 'DESSERT' ? 'active__btn' : ''}`} onClick={() => setFilter('DESSERT')}>Dessert</button>
-                            <button className={`filter-btn ${filter === 'COFFEE' ? 'active__btn' : ''}`} onClick={() => setFilter('COFFEE')}>Coffee</button>
+                            <button className={`filter-btn ${filter === 1 ? 'active__btn' : ''}`} onClick={() => setFilter(1)}>Almuerzos</button>
+                            <button className={`filter-btn ${filter === 2 ? 'active__btn' : ''}`} onClick={() => setFilter(2)}>Postres</button>
+                            <button className={`filter-btn ${filter === 3 ? 'active__btn' : ''}`} onClick={() => setFilter(3)}>Desayunos</button>
+                            <button className={`filter-btn ${filter === 4 ? 'active__btn' : ''}`} onClick={() => setFilter(4)}>Bebidas</button>
+                            <button className={`filter-btn ${filter === 5 ? 'active__btn' : ''}`} onClick={() => setFilter(5)}>Infantil</button>
                         </Col>
                         {
-                            products.map(item => (
-                                <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
+                            products.filter(item => item.idTipoMenu === filter).map(item => (
+                                <Col lg="3" md="4" sm="6" xs="6" key={item.idAlimento} className="mb-4">
                                     <ProductCard item={item} />
                                 </Col>
                             ))
@@ -59,7 +61,7 @@ const MenuPack = () => {
                     </Row>
                 </Container>
             </section>
-            <Footer /> {/* Footer al final */}
+            <Footer />
         </>
     );
 }
