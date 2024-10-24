@@ -63,6 +63,27 @@
     outline: none;
 }
 
+/* product-card.css */
+.single__product .quantity-selector {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.single__product .quantity-selector label {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.single__product .quantity-selector input {
+    width: 60px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
 
 
 @keyframes animate{

@@ -8,9 +8,10 @@ import Reservas from './pages/Reservas';
 import Sucursales from './pages/Sucursales';
 import Ayuda from './pages/Ayuda';
 import Cart from './components/cart/Cart';
-
+import { CartProvider } from '../src/components/cart/CartContext';// Asegúrate de que la ruta sea correcta
 function App() {
     return (
+        <CartProvider component>
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -23,6 +24,7 @@ function App() {
 
             </Routes>
         </Router>
+        </CartProvider>
     );
 }
 

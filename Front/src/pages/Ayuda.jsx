@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import './ayuda.css'; // Archivo CSS para los estilos de la página
